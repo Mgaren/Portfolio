@@ -1,3 +1,30 @@
 {% extends 'static/layout.html.twig' %}
 
+{% block stylesheets %}
+    <link href="{{ 'styles/home.css' }}" rel="stylesheet">
+    <link href="{{ 'styles/footer.css' }}" rel="stylesheet">
+    <link href="{{ 'styles/nav.css' }}" rel="stylesheet">
+{% endblock %}
+
 {% block title %}Acceuil{% endblock %}
+
+{% block headerTitle %}{% endblock %}
+{% block main %}
+    <div class="Home">
+        <h1 class="title">Mes Projets</h1>
+        <div class="image-1">
+            <div class="text-1">
+                <p> Description des projets. </p>
+                <a href="#" class="link-home"> Projet perso </a>
+                <a href="#" class="link-home"> Projet d'équipe </a>
+            </div>
+        </div>
+        <h1 class="title">Mon curriculum vitae</h1>
+        <div class="image-2">
+            <div class="text-2">
+                <p> Description rapide </p>
+                <a href="#" class="link-home"> Aller au CV </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
