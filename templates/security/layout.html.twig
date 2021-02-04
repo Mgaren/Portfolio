@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <header>
+        <div class="image-title">
+            {% include "_nav.html.twig" %}
+            {% block headerTitle %}{% endblock %}
+        </div>
+        <hr>
+    </header>
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+    {% include "_footer.html.twig" %}
+{% endblock %}
