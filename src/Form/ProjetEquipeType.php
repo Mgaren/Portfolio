@@ -14,13 +14,13 @@ class ProjetEquipeType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom',
+                'label' => 'Nom*',
             ])
             ->add('link', TextType::class, [
-                'label' => 'lien',
+                'label' => 'lien*',
             ])
             ->add('description', TextType::class, [
-                'label' => 'description',
+                'label' => 'description*',
             ])
         ;
     }
