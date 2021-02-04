@@ -42,6 +42,11 @@ class User implements UserInterface
      */
     private string $password;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private bool $isVerified = false;
+
 
     public function getId(): int
     {
@@ -74,7 +79,9 @@ class User implements UserInterface
 
     public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
@@ -116,5 +123,19 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+        return $this;
     }
 }
