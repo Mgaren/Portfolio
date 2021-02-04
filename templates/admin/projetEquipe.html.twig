@@ -1,0 +1,52 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block title %}Administration - Projet Equipe{% endblock %}
+
+{% block main %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+            <button type="button" id="sidebarCollapse" class="navbar-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-8"><h2>Les projets D'équipe</h2></div>
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-info add-new"><a href="{{ path('projetEquipe_new') }}">Ajouter</a></button>
+                </div>
+            </div>
+        </div>
+        <table class="table text-center">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Lien</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for projetEquipe in projetEquipes %}
+                <tr>
+                    <td>{{ projetEquipe.name }}</td>
+                    <td>{{ projetEquipe.link }}</td>
+                    <td>{{ projetEquipe.description }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">Le projet est vide</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

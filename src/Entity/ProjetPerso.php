@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProjetPersoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProjetPersoRepository::class)
@@ -23,6 +24,11 @@ class ProjetPerso
     private $name;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\File(
+     *     mimeTypes = {"image/jpeg", "image/jpg", "image/png"},
+     *     mimeTypesMessage = "Le format n'est pas valide(JPEG/JPG/PNG)"
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $image;

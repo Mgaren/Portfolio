@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Projet Equipe{% endblock %}
+
+{% block body %}
+    <h1>Create new Projet Equipe</h1>
+
+    {{ include('projetPerso/_form.html.twig') }}
+    <p><em>* Champs Obligatoires</em></p>
+
+    <a href="{{ path('admin_projetEquipe') }}">back to list</a>
+{% endblock %}
