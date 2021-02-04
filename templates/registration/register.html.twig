@@ -1,40 +1,39 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link href="{{ 'style/footer.css' }}" rel="stylesheet">
-    {# <link href="{{ 'style/nav.css' }}" rel="stylesheet"> #}
+    <link href="{{ 'styles/footer.css' }}" rel="stylesheet">
+    <link href="{{ 'styles/nav.css' }}" rel="stylesheet">
+    <link href="{{ 'styles/registration.css' }}" rel="stylesheet">
 {% endblock %}
 
-{% block title %}Taste - Inscription{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
     <header>
-        <div class="image-title">
-            {% include "_nav.html.twig" %}
-            {% block headerTitle %}{% endblock %}
-        </div>
-        <hr>
+        {% include "_nav.html.twig" %}
+        {% block headerTitle %}{% endblock %}
     </header>
     <main>
         {% block main %}
-        {% for flashError in app.flashes('verify_email_error') %}
-            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-        {% endfor %}
+            {% for flashError in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+            {% endfor %}
+            <div class="registration">
+                <h1>Inscription</h1>
 
-        <h1>Inscription</h1>
+                {{ form_start(registrationForm) }}
+                <div class="name">{{ form_row(registrationForm.name) }}</div>
+                <div class="email">{{ form_row(registrationForm.email) }}</div>
+                <div class="password">{{ form_row(registrationForm.plainPassword, {
+                        label: 'Mot de passe'
+                    }) }}</div>
+                <div class="condition">{{ form_row(registrationForm.agreeTerms, {label: 'acceptez-vous les conditions --> '}) }}
+                    <label for="conditions"><a href="#">Les conditions d'utilisation du service </a></label>
+                </div>
 
-        {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.name) }}
-            {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.plainPassword, {
-                label: 'Mot de passe'
-            }) }}
-            <label for="conditions"><a href="#"> J'accepte les conditions d'utilisation du service </a></label>
-            {{ form_row(registrationForm.agreeTerms) }}
-
-
-            <button type="submit" class="btn"> S'inscrire </button>
-        {{ form_end(registrationForm) }}
+                <button type="submit" class="btn"> S'inscrire </button>
+                {{ form_end(registrationForm) }}
+            </div>
         {% endblock %}
     </main>
     {% include "_footer.html.twig" %}
