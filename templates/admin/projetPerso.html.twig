@@ -34,6 +34,7 @@
                 <th>Nom</th>
                 <th>Lien</th>
                 <th>Description</th>
+                <th>Images</th>
             </tr>
             </thead>
             <tbody>
@@ -42,6 +43,12 @@
                     <td>{{ projetPerso.name }}</td>
                     <td>{{ projetPerso.link }}</td>
                     <td>{{ projetPerso.description }}</td>
+                    <td>{{ projetPerso.image }}</td>
+                    <td>
+                        <a href="{{ path('projetPerso_show', {'id': projetPerso.id}) }}">Détail</a>
+                        {{ include('projetPerso/_delete_form.html.twig') }}
+                        <a href="{{ path('projetPerso_edit', {'id': projetPerso.id}) }}">Editer</a>
+                    </td>
                 </tr>
             {% else %}
                 <tr>

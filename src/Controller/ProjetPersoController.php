@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\ProjetPerso;
+use App\Form\EditType;
 use App\Form\ProjetPersoType;
 use App\Repository\ProjetPersoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -67,5 +68,57 @@ class ProjetPersoController extends AbstractController
             'projetPerso' => $projetPerso,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/projetPerso/{id}", name="projetPerso_show", methods={"GET"})
+     * @param projetPerso $projetPerso
+     * @return Response
+     */
+    public function show(projetPerso $projetPerso): Response
+    {
+        return $this->render('projetPerso/show.html.twig', [
+            'projetPerso' => $projetPerso,
+        ]);
+    }
+
+    /**
+     * @Route("/projetPerso/{id}/edit", name="projetPerso_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param projetPerso $projetPerso
+     * @return Response
+     */
+    public function edit(Request $request, projetPerso $projetPerso): Response
+    {
+        $form = $this->createForm(EditType::class, $projetPerso);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('admin_projetPersot');
+        }
+
+        return $this->render('projetPerso/edit.html.twig', [
+            'projetPerso' => $projetPerso,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/projetPerso/{id}", name="projetPerso_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param projetPerso $projetPerso
+     * @return Response
+     */
+    public function delete(Request $request, projetPerso $projetPerso): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $projetPerso->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($projetPerso);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_projetPerso');
     }
 }

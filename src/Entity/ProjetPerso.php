@@ -16,12 +16,12 @@ class ProjetPerso
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private string $name;
 
     /**
      * @Assert\NotBlank
@@ -31,24 +31,24 @@ class ProjetPerso
      * )
      * @ORM\Column(type="string", length=255)
      */
-    private $image;
+    private string $image;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $link;
+    private string $link;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $description;
+    private string $description;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -60,7 +60,7 @@ class ProjetPerso
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImage(): string
     {
         return $this->image;
     }
@@ -72,7 +72,7 @@ class ProjetPerso
         return $this;
     }
 
-    public function getLink(): ?string
+    public function getLink(): string
     {
         return $this->link;
     }
@@ -84,7 +84,7 @@ class ProjetPerso
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescription(): string
     {
         return $this->description;
     }
