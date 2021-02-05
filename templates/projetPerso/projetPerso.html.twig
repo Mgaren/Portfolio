@@ -9,20 +9,18 @@
 {% block title %}Projet Perso{% endblock %}
 
 {% block main %}
-    <div class="projet-1">
-        <img src="#" alt="image..." width="50%">
-        <div class="event">
-            <h2>Lorem ipsum</h2>
-            <p class="text"> description </p>
-        </div>
-    </div>
-
-    <div class="projet-2">
-        <img src="#" alt="image..." width="50%">
-        <div class="event">
-            <h2>Lorem ipsum</h2>
-            <p class="text"> description </p>
-        </div>
-    </div>
-
+    <ul class="container">
+        {% for projetPerso in projetPersos %}
+            <li class="projet_item">
+                <div class="projet">
+                    <div><img class="image" src="/uploads/images/{{ projetPerso.image }}"></div>
+                    <div class="text">
+                        <h2 class="name">{{ projetPerso.name }}</h2>
+                        <h2 class="link">{{ projetPerso.link }}</h2>
+                        <h3 class="description">{{ projetPerso.description }}</h3>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
